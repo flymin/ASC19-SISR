@@ -11,13 +11,13 @@
 ### 评价函数
 1. 从评价的代码中可以直接导出计算cos距离使用的512维向量并完成两张人脸图像的比较
 2. 评价之前作者使用了从matlab移植过来的cp2tform函数，这个函数完成的功能是将人脸进行相关性匹配并裁剪到指定大小[参考](https://zhuanlan.zhihu.com/p/29515986)
-即从<br><center>![origin](image\cp2tform_origin.jpg)</center><br>转换到<br><center>![after](image\cp2tform_after.jpg)</center><br>这样的操作使得从复杂图像中抽取人脸成为可能
+即从<br><center>![origin](image/cp2tform_origin.jpg)</center><br>转换到<br><center>![after](image\cp2tform_after.jpg)</center><br>这样的操作使得从复杂图像中抽取人脸成为可能
 	> 考虑到分辨率因素，因为人脸监测网络所需要的分辨率并不是很大，所以分辨率难点可以设置为：
 	> 1. 使用很小的分辨率，因为是真严重因此复原难度较高
 	> 2. 使用高分辨率图像但人脸区域小
 
 ### 实际代码
-1. 仿射变换结果：250 x 250 x 3 -> 112 x 96 x 3 <br>变换矩阵采用应该是人脸数据集的关键点标注（使得关键点位置固定）【猜测】<br><center>![contrast](image\contrast.png)</center><br>
+1. 仿射变换结果：250 x 250 x 3 -> 112 x 96 x 3 <br>变换矩阵采用应该是人脸数据集的关键点标注（使得关键点位置固定）【猜测】<br><center>![contrast](image/contrast.png)</center><br>
 	**所以我们是否需要关注特殊部分？**
 2. 注意cv2使用的是BGR通道，常用的库使用的都是RGB通道
 3. 测试代码给图像做了翻转，但是计算cos值得时候并没使用翻转结果
